@@ -12,3 +12,7 @@ Conversion of MIDI to C array courtesy of Len Shustek: https://github.com/LenShu
 External audio DAC: NXP UDA1334ATS.
 Samples are pushed into the DAC using DMA.
 With some modifications, the code can be ported to other 32-bit platforms like Chipkit.
+
+Please extract this to the Harmony apps folder, example: X:\microchip\harmony, where X is your Harmony installation drive.
+
+The pin assignments can be viewed in the "MPLAB Harmony Configurator". [Tools->Embedded->MPLAB Harmony Configurator]
