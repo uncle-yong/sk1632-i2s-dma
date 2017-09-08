@@ -62,7 +62,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include <proc/p32mx150f128b.h>                     // Defines EXIT_FAILURE
 #include "system/common/sys_module.h"   // SYS function prototypes
 #include "sys/kmem.h"                   // KVA_TO_PA macro
-
+#include "main.h"
 
 void init_i2s1();
 void delay_ms(unsigned int count);
@@ -70,17 +70,11 @@ void i2s_init_DMA();
 void timer3_init();
 void generate_sine();
 
-//volatile unsigned char channel = 0;
-//volatile unsigned int accum1_c = 0;
-//volatile unsigned int tuningWord1_c = 236223201;
-//volatile unsigned int accum2_c = 0;
-//volatile unsigned int tuningWord2_c = 236223201/2;
-
 extern const short wavetable[];
 
-extern short buffer_a[512];
-extern short buffer_b[512];
-extern short* buffer_pp;
+extern short buffer_a[BUFFER_SIZE];
+extern short buffer_b[BUFFER_SIZE];
+extern short* buffer_pp;            // buffer_pp = buffer play pointer.
 
 extern unsigned char isPlaying;
 extern unsigned char isFillFlag;
@@ -90,12 +84,13 @@ extern unsigned long time_play;  // note duration.
 extern unsigned long time_play_count;
 extern unsigned long songIndex;
 
+// test variables - for debugging purposes only!
 unsigned long accumTest_m = 0;
 unsigned long tempTest_m = 0;
 unsigned long tuningWordTest_m = 39370533;
+//--------------------------------------------------
 
 extern volatile unsigned char isUpdateNote;
-
 
 // *****************************************************************************
 // *****************************************************************************
@@ -108,7 +103,6 @@ int main ( void )
     /* Initialize all MPLAB Harmony modules, including application(s). */
     SYS_Initialize ( NULL );
     
-    unsigned int temp1 = 0;
     TRISA = 0x0000;
     TRISB = 0x0000;
     PORTA = 0x0000;
@@ -120,10 +114,8 @@ int main ( void )
     // Fill all buffers first at start.
     buffer_pp = &buffer_a[0];
     channel1_generate();
-    //generate_sine();
     buffer_pp = &buffer_b[0];
     channel1_generate();
-    //generate_sine();
     
     i2s_init_DMA();
     
@@ -139,13 +131,7 @@ int main ( void )
     while ( true )
 {
         /* Maintain state machines of all polled MPLAB Harmony modules. */
-        //SYS_Tasks ( );
-        //LATAINV = 0x01;
-        //delay_ms(500);
-        //SPI1BUF = 0xff00fff0;
-        //while( !SPI1STATbits.SPIRBF);
-        //temp1 = SPI1BUF;
-        if (isPlaying == 1) {
+         if (isPlaying == 1) {
             if (isFillFlag == 1) {
                 if (buffer_position == 1) {
                     DCH0SSA = KVA_TO_PA(&buffer_b[0]); // DMA source address.
@@ -193,7 +179,6 @@ void init_i2s1() {
     //IPC5SET = 0x0d000000; // Set IPL = 3, Subpriority 1
     //IEC0SET = 0x03800000; // Enable RX, TX and Error interrupts
     
-        
     SPI1STATCLR = 0x40; // clear the Overflow
     SPI1CON2 = 0x00000080; // I2S Mode, AUDEN = 1, AUDMON = 0
     SPI1CON2bits.IGNROV = 1; // Ignore Receive Overflow bit (for Audio Data Transmissions)
@@ -218,12 +203,9 @@ void init_i2s1() {
     /* Note: A few of bits related to frame settings are not required to be set in the SPI1CON */
     /* register during audio mode operation. Please refer to the notes in the SPIxCON2 register.*/
 
-
-
 }
 
 void i2s_init_DMA(void) {
-    //memset(ws2812sendBit, 1024, 0x00); // buffer for 24 individual bits of the WS2812 to be sent to the PWM module!
     IEC1bits.DMA0IE = 1;
     IFS1bits.DMA0IF = 0;
     DMACONSET = 0x8000; // enable DMA.
@@ -234,7 +216,7 @@ void i2s_init_DMA(void) {
     DCH0ECON = 0x00;
     DCH0SSA = KVA_TO_PA(&buffer_pp); // DMA source address.
     DCH0DSA = KVA_TO_PA(&SPI1BUF); // DMA destination address.
-    DCH0SSIZ = 1024; // DMA Source size (default).
+    DCH0SSIZ = BUFFER_SIZE*2; // DMA Source size (default).
     DCH0DSIZ = 2;   // DMA destination size.
     DCH0CSIZ = 2;   // DMA cell size.
     DCH0ECONbits.CHSIRQ = _SPI1_TX_IRQ; // DMA transfer triggered by which interrupt? (On PIC32MX - it is by _IRQ suffix!)
@@ -277,7 +259,7 @@ void timer3_init() {
 void generate_sine() {
     
     unsigned int i = 0;
-    for(i = 0; i < 256; i++) {
+    for(i = 0; i < BUFFER_SIZE/2; i++) {
         accumTest_m += tuningWordTest_m;                  // generating modulator for 1st channel.
         tempTest_m = (long)wavetable[accumTest_m >> 20];
         buffer_pp[2*i]   = tempTest_m;    // One channel.

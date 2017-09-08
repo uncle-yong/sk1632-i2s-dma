@@ -6,6 +6,7 @@
 #include "wavetable.h"
 #include "songdata2.h"
 #include "tuningwords.h"
+#include "main.h"
 
 #define MOD_AMPL     4
 #define CARRIER_AMPL 3
@@ -105,7 +106,7 @@ void channel1_generate() {
       // approximately 360us per operation.   (128 samples of FM-modulated DDS, 1 channel with decay envelope)
       unsigned int i = 0;
       LATASET = 0x02;
-      for(i = 0; i < 256; i++) {
+      for(i = 0; i < BUFFER_SIZE/2; i++) {
             accum1_m += tuningWord1_m;                  // generating modulator for 1st channel.
             temp1_m = (long)wavetable[accum1_m >> 20];
             accum1_c += (unsigned long)(tuningWord1_c) + (long)temp1_m*amplitude1_m; // 2085, beta approx. 1.0
@@ -196,15 +197,13 @@ void channel1_generate() {
             buffer_pp[2*i+1] = temp_output1;    // the Other channel!
       }
       LATACLR = 0x02;
-      //DCH0SSA = KVA_TO_PA(buffer_pp); // DMA source address.
-      //DCH0CONbits.CHEN = 1;  // DMA Channel 0 is enabled. 
-      //DCH0ECONbits.CFORCE = 1;
 
 }
 
 volatile unsigned char isStopNote = 0;
 volatile unsigned char isUpdateNote = 0;
 
+// This body of the interrupt has been moved into the main loop due to the excessive overhead!
 void __ISR(_TIMER_23_VECTOR, ipl6AUTO) _IntHandlerTimer3(void) {
      // is note duration reached already?
      // yes, then:
