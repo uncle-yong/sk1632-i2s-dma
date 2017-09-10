@@ -21,4 +21,5 @@ Issues:
 1.) Clicking noises between changing notes.
 
 Todo: 
-1.) Add an interpolation filter to each sine wave.
+1.) Suppress the clicking noises between changing notes.
+2.) Add an interpolation filter to each sine wave.
