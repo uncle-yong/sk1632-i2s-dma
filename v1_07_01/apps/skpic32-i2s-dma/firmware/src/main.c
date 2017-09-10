@@ -72,22 +72,26 @@ void generate_sine();
 
 extern const short wavetable[];
 
-extern short buffer_a[BUFFER_SIZE];
-extern short buffer_b[BUFFER_SIZE];
+extern short buffer_a[BUFFER_LENGTH];
+extern short buffer_b[BUFFER_LENGTH];
 extern short* buffer_pp;            // buffer_pp = buffer play pointer.
 
 extern unsigned char isPlaying;
 extern unsigned char isFillFlag;
 extern unsigned char buffer_position;
 
+extern volatile unsigned char bufferAFull;
+extern volatile unsigned char bufferBFull;
+
 extern unsigned long time_play;  // note duration.
 extern unsigned long time_play_count;
 extern unsigned long songIndex;
 
 // test variables - for debugging purposes only!
-unsigned long accumTest_m = 0;
-unsigned long tempTest_m = 0;
-unsigned long tuningWordTest_m = 39370533;
+unsigned long accum1t = 0;
+unsigned long accum2t = 0;
+unsigned long tuningWord1t = 236223201;
+unsigned long tuningWord2t = 236223201;
 //--------------------------------------------------
 
 extern volatile unsigned char isUpdateNote;
@@ -107,53 +111,53 @@ int main ( void )
     TRISB = 0x0000;
     PORTA = 0x0000;
     
-    init_i2s1();
-    
-    delay_ms(50);
-    
     // Fill all buffers first at start.
     buffer_pp = &buffer_a[0];
     channel1_generate();
     buffer_pp = &buffer_b[0];
     channel1_generate();
     
-    i2s_init_DMA();
-    
-    DCH0SSA = KVA_TO_PA(&buffer_a[0]); // DMA source address.
+    delay_ms(5);
         
-    DCH0ECONbits.CFORCE = 1;
+    init_i2s1();
+    i2s_init_DMA();
+   
+    // Trigger the DMA to start the transfer by switching the SPI1 transmit complete interrupt flag up.
+    IFS1bits.SPI1TXIF = 1;
     
     time_play_count = 0;
     time_play = 1000;
     songIndex = 0;
     timer3_init();
 
-    while ( true )
-{
+    while (true) {
         /* Maintain state machines of all polled MPLAB Harmony modules. */
-         if (isPlaying == 1) {
-            if (isFillFlag == 1) {
-                if (buffer_position == 1) {
-                    DCH0SSA = KVA_TO_PA(&buffer_b[0]); // DMA source address.
-                    DCH0ECONbits.CFORCE = 1;
-                    buffer_pp = &buffer_a[0];
-                    channel1_generate();
-                    //generate_sine();
-                } else {
-                    DCH0SSA = KVA_TO_PA(&buffer_a[0]); // DMA source address.
-                    DCH0ECONbits.CFORCE = 1;
-                    buffer_pp = &buffer_b[0];
-                    channel1_generate();
-                    //generate_sine();
-                }
-                isFillFlag = 0;
+        if (isPlaying == 1) {
+
+            // source: http://chipkit.net/forum/viewtopic.php?t=3137
+            if (bufferAFull == 0) {
+                buffer_pp = &buffer_a[0];
+                channel1_generate();
+                bufferAFull = 1;
             }
-            if(isUpdateNote) {
+            if (bufferBFull == 0) {
+                buffer_pp = &buffer_b[0];
+                channel1_generate();
+                bufferBFull = 1;
+            }
+        if (isUpdateNote) {
                 updateNote();
                 isUpdateNote = 0;
             }
         } else {
             LATASET = 0x0001;
+            SPI1CON = 0;           // Stops and resets the SPI1.
+            DCH0INTCLR = 0xff00ff; // clear DMA0 interrupts register.
+            DCH1INTCLR = 0xff00ff; // clear DMA1 interrupts register.
+            DCH0CONbits.CHEN = 0;  // DMA Channel 0 is disabled. 
+            DCH0CONbits.CHEN = 0;  // DMA Channel 1 is disabled. 
+            DMACONCLR = 0x8000; // disable entire DMA.
+            
             //asm PWRSAV#0;                 // Sleep mode. (dsPIC33F - mikroC)
             asm volatile("wait");           // Sleep mode. (PIC32MX - xc32)
         }
@@ -170,22 +174,19 @@ void init_i2s1() {
     /* It assumes that none of the SPI1 input pins are shared with an analog input. */
     unsigned int rData;
     IEC0CLR = 0x03800000; // disable all interrupts
+    IFS1bits.SPI1TXIF = 0;
     SPI1CON = 0; // Stops and resets the SPI1.
     SPI1CON2 = 0; // Reset audio settings
     SPI1BRG = 0; // Reset Baud rate register
     rData = SPI1BUF; // clears the receive buffer
-    //IFS0CLR = 0x03800000; // clear any existing event
-    //IPC5CLR = 0x1f000000; // clear the priority
-    //IPC5SET = 0x0d000000; // Set IPL = 3, Subpriority 1
-    //IEC0SET = 0x03800000; // Enable RX, TX and Error interrupts
     
     SPI1STATCLR = 0x40; // clear the Overflow
     SPI1CON2 = 0x00000080; // I2S Mode, AUDEN = 1, AUDMON = 0
     SPI1CON2bits.IGNROV = 1; // Ignore Receive Overflow bit (for Audio Data Transmissions)
     SPI1CON2bits.IGNTUR = 1; //  Ignore Transmit Underrun bit (for Audio Data Transmissions) 1 = A TUR is not a critical error and zeros are transmitted until thSPIxTXB is not empty 0 = A TUR is a critical error which stop SPI operation
     
-    //SPI1CONbits.ENHBUF = 1; // 1 = Enhanced Buffer mode is enabled
-    SPI1BRG = 7;
+    SPI1CONbits.ENHBUF = 1; // 1 = Enhanced Buffer mode is enabled
+    SPI1BRG = 9;
     SPI1CON = 0x00000060; // Master mode, SPI ON, CKP = 1, 16-bit audio channel
     SPI1CONbits.STXISEL = 0b11;
     SPI1CONbits.DISSDI = 1; // 0 = Disable SDI bit
@@ -196,34 +197,55 @@ void init_i2s1() {
     IPC7SET = 0x1C000000;
     
     IEC1bits.SPI1TXIE = 0;
-    IFS1bits.SPI1TXIF = 0;
+
 
     // data, 32 bits per frame
     // from here, the device is ready to receive and transmit data
     /* Note: A few of bits related to frame settings are not required to be set in the SPI1CON */
     /* register during audio mode operation. Please refer to the notes in the SPIxCON2 register.*/
-
 }
 
 void i2s_init_DMA(void) {
+    DMACONCLR = 0x8000; // disable entire DMA.
     IEC1bits.DMA0IE = 1;
     IFS1bits.DMA0IF = 0;
+    IPC10bits.DMA0IP = 7;   // Setting DMA0 at highest priority.
+    IPC10bits.DMA0IS = 3;   // Setting DMA0 at highest sub-priority.
     DMACONSET = 0x8000; // enable DMA.
     DCH0CON = 0x0000;
     DCRCCON = 0x00; // 
-    DCH0INTCLR = 0xff00ff; // clear DMA interrupts register.
-    DCH0INTbits.CHBCIE = 1; // DMA Interrupts when channel block transfer complete enabled.
+    DCH0INTCLR = 0xff00ff; // clear DMA0 interrupts register.
+    DCH0INTbits.CHSDIE = 1; // DMA0 Interrupts when source done enabled.
     DCH0ECON = 0x00;
-    DCH0SSA = KVA_TO_PA(&buffer_pp); // DMA source address.
-    DCH0DSA = KVA_TO_PA(&SPI1BUF); // DMA destination address.
-    DCH0SSIZ = BUFFER_SIZE*2; // DMA Source size (default).
-    DCH0DSIZ = 2;   // DMA destination size.
-    DCH0CSIZ = 2;   // DMA cell size.
-    DCH0ECONbits.CHSIRQ = _SPI1_TX_IRQ; // DMA transfer triggered by which interrupt? (On PIC32MX - it is by _IRQ suffix!)
-    DCH0ECONbits.AIRQEN = 0; // do not enable DMA transfer abort interrupt.
-    DCH0ECONbits.SIRQEN = 1; // enable DMA transfer start interrupt.
-    DCH0CONbits.CHAEN = 1; // DMA Channel 0 is always enabled right after the transfer.
+    DCH0SSA = KVA_TO_PA(&buffer_a[0]); // DMA0 source address.
+    DCH0DSA = KVA_TO_PA(&SPI1BUF); // DMA0 destination address.
+    DCH0SSIZ = BUFFER_LENGTH*2; // DMA0 Source size (default).
+    DCH0DSIZ = 2;   // DMA0 destination size.
+    DCH0CSIZ = 2;   // DMA0 cell size.
+    DCH0ECONbits.CHSIRQ = _SPI1_TX_IRQ; // DMA0 transfer triggered by which interrupt? (On PIC32MX - it is by _IRQ suffix!)
+    DCH0ECONbits.AIRQEN = 0; // do not enable DMA0 transfer abort interrupt.
+    DCH0ECONbits.SIRQEN = 1; // enable DMA0 transfer start interrupt.
+    DCH0CONbits.CHAEN = 0; // DMA Channel 0 is always disabled right after the transfer.
     DCH0CONbits.CHEN = 1;  // DMA Channel 0 is enabled. 
+    
+    IEC1bits.DMA1IE = 1;
+    IFS1bits.DMA1IF = 0;
+    IPC10bits.DMA1IP = 7;   // Setting DMA1 at highest priority.
+    IPC10bits.DMA1IS = 3;   // Setting DMA1 at highest sub-priority.
+    DCH1CON = 0x0000;
+    DCH1INTCLR = 0xff00ff; // clear DMA1 interrupts register.
+    DCH1INTbits.CHSDIE = 1; // DMA1 Interrupts when source done enabled.
+    DCH1ECON = 0x00;
+    DCH1SSA = KVA_TO_PA(&buffer_b[0]); // DMA1 source address.
+    DCH1DSA = KVA_TO_PA(&SPI1BUF); // DMA1 destination address.
+    DCH1SSIZ = BUFFER_LENGTH*2; // DMA1 Source size (default).
+    DCH1DSIZ = 2;   // DMA1 destination size.
+    DCH1CSIZ = 2;   // DMA1 cell size.
+    DCH1ECONbits.CHSIRQ = _SPI1_TX_IRQ; // DMA1 transfer triggered by which interrupt? (On PIC32MX - it is by _IRQ suffix!)
+    DCH1ECONbits.AIRQEN = 0; // do not enable DMA1 transfer abort interrupt.
+    DCH1ECONbits.SIRQEN = 1; // enable DMA1 transfer start interrupt.
+    DCH1CONbits.CHAEN = 0; // DMA Channel 1 is always disabled right after the transfer.
+    DCH1CONbits.CHEN = 0;  // DMA Channel 1 is enabled.  
 }
 
 void delay_ms(unsigned int count)
@@ -256,16 +278,27 @@ void timer3_init() {
     
 }
 
+// Generate_sine is for debugging purposes only!
 void generate_sine() {
     
-    unsigned int i = 0;
-    for(i = 0; i < BUFFER_SIZE/2; i++) {
-        accumTest_m += tuningWordTest_m;                  // generating modulator for 1st channel.
-        tempTest_m = (long)wavetable[accumTest_m >> 20];
-        buffer_pp[2*i]   = tempTest_m;    // One channel.
-        buffer_pp[2*i+1] = tempTest_m;    // the Other channel!
-        
+    //source: https://github.com/pyrohaz
+  unsigned int n = 0;
+  short int sample = 0;
+  for (n = 0; n < BUFFER_LENGTH; n++) {
+    
+    if (n & 0x01) {
+      //sample = (short int)wavetable[accum1t >> 20];
+      sample = 0;
+      accum1t += tuningWord1t;
     }
+    else {
+      sample = (short int)wavetable[accum2t >> 20];
+      accum2t += tuningWord2t;
+    }
+
+    buffer_pp[n] = sample;
+
+  }
     
 }
 /*******************************************************************************

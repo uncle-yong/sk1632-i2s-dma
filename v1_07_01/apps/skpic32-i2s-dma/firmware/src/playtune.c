@@ -4,19 +4,16 @@
 #include "system_definitions.h"
 #include "envtable.h"
 #include "wavetable.h"
-#include "songdata2.h"
+#include "songdata.h"
 #include "tuningwords.h"
 #include "main.h"
-
-#define MOD_AMPL     4
-#define CARRIER_AMPL 3
 
 // parser courtesy of Len Shustek.
 // https://github.com/LenShustek/arduino-playtune
 volatile unsigned char cmd, opcode, chan;
 
-short buffer_a[512];
-short buffer_b[512];
+short buffer_a[BUFFER_LENGTH];
+short buffer_b[BUFFER_LENGTH];
 short* buffer_pp;
 
 unsigned char isPlaying = 1;
@@ -106,7 +103,7 @@ void channel1_generate() {
       // approximately 360us per operation.   (128 samples of FM-modulated DDS, 1 channel with decay envelope)
       unsigned int i = 0;
       LATASET = 0x02;
-      for(i = 0; i < BUFFER_SIZE/2; i++) {
+      for(i = 0; i < BUFFER_LENGTH/2; i++) {
             accum1_m += tuningWord1_m;                  // generating modulator for 1st channel.
             temp1_m = (long)wavetable[accum1_m >> 20];
             accum1_c += (unsigned long)(tuningWord1_c) + (long)temp1_m*amplitude1_m; // 2085, beta approx. 1.0
