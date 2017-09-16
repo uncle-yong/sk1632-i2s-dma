@@ -123,7 +123,7 @@ int main ( void )
       
     WM8731_Init();
     WM8731_Activate();
-    WM8731_SetVolume(80,80);
+    WM8731_SetVolume(40,40);
     
     init_i2s1();
     i2s_init_DMA();
