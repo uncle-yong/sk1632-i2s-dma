@@ -3,6 +3,9 @@ Cytron SK1632 FM synth music player using UDA1334ATS and a PIC32MX1xx/2xx microc
 
 In this project, PIC32MX150F128B is used.
 
+> **There is the WM8731 version of this project. In the project the WM8731 resides on a "Mikroelektronika Audio Codec Board Proto".
+> Please check this repository for the "WM8731" suffix for more information.**
+
 Required: MPLAB XC32 1.40 and above, MPLAB Harmony 1.07.01, and MPLAB X IDE 3.55.
 
 ## Features
@@ -22,6 +25,3 @@ The pin assignments can be viewed in the "MPLAB Harmony Configurator". [Tools->E
 ## Todo
 1. Suppress the clicking noises between changing notes.
 2. Add an interpolation filter to each sine wave.
-
-There is the WM8731 version of this project. In the project the WM8731 resides on a "Mikroelektronika Audio Codec Board Proto".
-Please check this repository for the "WM8731" suffix for more information.
