@@ -1,10 +1,13 @@
 # sk1632-i2s-dma
 Cytron SK1632 FM synth music player using UDA1334ATS and a PIC32MX1xx/2xx microcontroller.
 
-In this project, PIC32MX150F128B is used.
+In this project, PIC32MX150F128B and PIC32MX250F128B is used.
 
 > **There is the WM8731 version of this project. In the project the WM8731 resides on a "Mikroelektronika Audio Codec Board Proto".
 > Please check this repository for the "WM8731" suffix for more information.**
+
+> **PCM5102 version of this project is here too. In the project the PCM5102 resides on a board, which can be obtained through eBay.
+> Please check this repository for the "PCM5102" suffix for more information.**
 
 Required: MPLAB XC32 1.40 and above, MPLAB Harmony 1.07.01, and MPLAB X IDE 3.55.
 
