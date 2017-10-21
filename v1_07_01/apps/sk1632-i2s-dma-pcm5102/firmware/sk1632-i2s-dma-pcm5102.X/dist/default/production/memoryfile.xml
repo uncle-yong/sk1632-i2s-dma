@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<project>                                  
+  <executable name="dist/default/production/sk1632-i2s-dma-pcm5102.X.production.elf">                 
+    <memory name="program">                 
+      <units>bytes</units>                 
+      <length>132240</length>                 
+      <used>30184</used>                     
+      <free>102056</free>                     
+    </memory>                              
+    <memory name="data">              
+      <units>bytes</units>                 
+      <length>32768</length>                 
+      <used>2700</used>                     
+      <free>30068</free>                     
+    </memory>                              
+  </executable>                            
+</project>                                 
