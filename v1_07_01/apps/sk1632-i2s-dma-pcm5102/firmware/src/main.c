@@ -111,6 +111,13 @@ int main ( void )
     TRISA = 0x0000;
     TRISB = 0x0000;
     PORTA = 0x0000;
+
+//    ch[0].amplitude_m = MOD_AMPL;
+//    ch[1].amplitude_m = MOD_AMPL;
+//    ch[2].amplitude_m = MOD_AMPL;
+//    ch[3].amplitude_m = MOD_AMPL;
+//    ch[4].amplitude_m = MOD_AMPL;
+//    ch[5].amplitude_m = MOD_AMPL;
     
     // Fill all buffers first at start.
     buffer_pp = &buffer_a[0];
@@ -139,11 +146,17 @@ int main ( void )
             if (bufferAFull == 0) {
                 buffer_pp = &buffer_a[0];
                 channel1_generate();
+#ifdef DEBUG
+                generate_sine();
+#endif
                 bufferAFull = 1;
             }
             if (bufferBFull == 0) {
                 buffer_pp = &buffer_b[0];
                 channel1_generate();
+#ifdef DEBUG
+                generate_sine();
+#endif
                 bufferBFull = 1;
             }
         if (isUpdateNote) {

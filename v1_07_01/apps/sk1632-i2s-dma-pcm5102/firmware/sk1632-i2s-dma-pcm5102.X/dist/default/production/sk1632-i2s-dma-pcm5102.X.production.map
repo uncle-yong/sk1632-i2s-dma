@@ -114,6 +114,7 @@ gSysDMAChannelObj   0x40              build/default/production/_ext/65930274/sys
 chan                0x1               build/default/production/_ext/1360937237/playtune.o
 buffer_a            0x400             build/default/production/_ext/1360937237/playtune.o
 temp_output1        0x4               build/default/production/_ext/1360937237/playtune.o
+ch                  0xd8              build/default/production/_ext/1360937237/playtune.o
 sysDevconObj        0x8               build/default/production/_ext/1271179505/sys_devcon.o
 cmd                 0x1               build/default/production/_ext/1360937237/playtune.o
 
@@ -122,43 +123,43 @@ Microchip PIC32 Memory-Usage Report
 kseg0 Program-Memory Usage
 section                    address  length [bytes]      (dec)  Description
 -------                 ----------  -------------------------  -----------
-.rodata                 0x9d000000         0x4944       18756  Read-only const 
-.text.DRV_I2S_Initializ 0x9d004944          0xca4        3236   
-.text.updateNote        0x9d0055e8          0x7e8        2024   
-.text.channel1_generate 0x9d005dd0          0x454        1108   
-.text.i2s_init_DMA      0x9d006224          0x1ec         492   
-.text.main              0x9d006410          0x178         376   
-.rodata                 0x9d006588          0x128         296  Read-only const 
-.text.init_i2s1         0x9d0066b0          0x120         288   
-.text.SYS_Initialize    0x9d0067d0           0xec         236   
-.text.SYS_PORTS_Initial 0x9d0068bc           0xdc         220   
-.text.general_exception 0x9d006998           0xdc         220   
-.text.timer3_init       0x9d006a74           0xb4         180   
-.text._IntHandlerTimer3 0x9d006b28           0xb4         180   
-.dinit                  0x9d006bdc           0xb0         176   
-.text._IntHandlerSysDma 0x9d006c8c           0x8c         140   
-.text._IntHandlerSysDma 0x9d006d18           0x8c         140   
-.text.SYS_CLK_Initializ 0x9d006da4           0x7c         124   
-.text.SYS_DMA_Initializ 0x9d006e20           0x78         120   
-.text._IntHandlerDrvI2S 0x9d006e98           0x74         116   
-.rodata                 0x9d006f0c           0x64         100  Read-only const 
-.text.SYS_DEVCON_System 0x9d006f70           0x58          88   
-.text.SYS_DEVCON_Perfor 0x9d006fc8           0x58          88   
-.text.main_entry        0x9d007020           0x54          84   
-.text.delay_ms          0x9d007074           0x4c          76   
-.text.SYS_DEVCON_System 0x9d0070c0           0x48          72   
-.text._bootstrap_except 0x9d007108           0x48          72   
-.vector_default         0x9d007150           0x48          72   
-.text                   0x9d007198           0x44          68  App's exec code 
-.text._general_exceptio 0x9d0071dc           0x40          64   
-.text.SYS_INT_Initializ 0x9d00721c           0x18          24   
-.text                   0x9d007234           0x18          24  App's exec code 
-.text.SYS_DEVCON_Initia 0x9d00724c           0x14          20   
-.text.SYS_CLK_SystemFre 0x9d007260            0xc          12   
-.text.APP_Initialize    0x9d00726c            0x8           8   
-.text._on_reset         0x9d007274            0x8           8   
-.text._on_bootstrap     0x9d00727c            0x8           8   
-      Total kseg0_program_mem used  :      0x7284       29316  23.1% of 0x1f000
+.rodata                 0x9d000000         0x57a8       22440  Read-only const 
+.text.DRV_I2S_Initializ 0x9d0057a8          0xca4        3236   
+.text.updateNote        0x9d00644c          0x2c0         704   
+.text.i2s_init_DMA      0x9d00670c          0x1ec         492   
+.text.main              0x9d0068f8          0x178         376   
+.text.channel1_generate 0x9d006a70          0x160         352   
+.rodata                 0x9d006bd0          0x128         296  Read-only const 
+.text.init_i2s1         0x9d006cf8          0x120         288   
+.text.SYS_Initialize    0x9d006e18           0xec         236   
+.text.SYS_PORTS_Initial 0x9d006f04           0xdc         220   
+.text.general_exception 0x9d006fe0           0xdc         220   
+.text.timer3_init       0x9d0070bc           0xb4         180   
+.text._IntHandlerTimer3 0x9d007170           0xb4         180   
+.dinit                  0x9d007224           0xa0         160   
+.text._IntHandlerSysDma 0x9d0072c4           0x8c         140   
+.text._IntHandlerSysDma 0x9d007350           0x8c         140   
+.text.SYS_CLK_Initializ 0x9d0073dc           0x7c         124   
+.text.SYS_DMA_Initializ 0x9d007458           0x78         120   
+.text._IntHandlerDrvI2S 0x9d0074d0           0x74         116   
+.rodata                 0x9d007544           0x64         100  Read-only const 
+.text.SYS_DEVCON_System 0x9d0075a8           0x58          88   
+.text.SYS_DEVCON_Perfor 0x9d007600           0x58          88   
+.text.main_entry        0x9d007658           0x54          84   
+.text.delay_ms          0x9d0076ac           0x4c          76   
+.text.SYS_DEVCON_System 0x9d0076f8           0x48          72   
+.text._bootstrap_except 0x9d007740           0x48          72   
+.vector_default         0x9d007788           0x48          72   
+.text                   0x9d0077d0           0x44          68  App's exec code 
+.text._general_exceptio 0x9d007814           0x40          64   
+.text.SYS_INT_Initializ 0x9d007854           0x18          24   
+.text                   0x9d00786c           0x18          24  App's exec code 
+.text.SYS_DEVCON_Initia 0x9d007884           0x14          20   
+.text.SYS_CLK_SystemFre 0x9d007898            0xc          12   
+.text.APP_Initialize    0x9d0078a4            0x8           8   
+.text._on_reset         0x9d0078ac            0x8           8   
+.text._on_bootstrap     0x9d0078b4            0x8           8   
+      Total kseg0_program_mem used  :      0x78bc       30908  24.3% of 0x1f000
 
 kseg0 Boot-Memory Usage
 section                    address  length [bytes]      (dec)  Description
@@ -222,16 +223,16 @@ section                    address  length [bytes]      (dec)  Description
 .bev_excpt              0xbfc00380           0x10          16  BEV-Exception 
          Total kseg1_boot_mem used  :       0x1f4         500  42.8% of 0x490
         --------------------------------------------------------------------------
-         Total Program Memory used  :      0x75e8       30184  22.8% of 0x20490
+         Total Program Memory used  :      0x7c20       31776  24.0% of 0x20490
         --------------------------------------------------------------------------
 
 
 kseg1 Data-Memory Usage
 section                    address  length [bytes]      (dec)  Description
 -------                 ----------  -------------------------  -----------
-.sdata                  0xa0000000           0x24          36  Small init data 
-.sbss                   0xa0000024          0x114         276  Small uninit data 
-.bss                    0xa0000138          0x954        2388  Uninitialized data 
+.sdata                  0xa0000000            0xc          12  Small init data 
+.sbss                   0xa000000c           0x54          84  Small uninit data 
+.bss                    0xa0000060          0xa2c        2604  Uninitialized data 
          Total kseg1_data_mem used  :       0xa8c        2700  8.2% of 0x8000
         --------------------------------------------------------------------------
             Total Data Memory used  :       0xa8c        2700  8.2% of 0x8000
@@ -1268,130 +1269,78 @@ END GROUP
  *(.got)
                 0xa0000000                . = ALIGN (0x4)
 
-.sdata          0xa0000000       0x24
+.sdata          0xa0000000        0xc
                 0xa0000000                _sdata_begin = .
  *(.sdata .sdata.* .gnu.linkonce.s.*)
  .sdata         0xa0000000        0x8 build/default/production/_ext/1360937237/main.o
                 0xa0000000                tuningWord2t
                 0xa0000004                tuningWord1t
- .sdata         0xa0000008       0x1c build/default/production/_ext/1360937237/playtune.o
-                0xa0000008                amplitude6_m
-                0xa000000c                amplitude5_m
-                0xa0000010                amplitude4_m
-                0xa0000014                amplitude3_m
-                0xa0000018                amplitude2_m
-                0xa000001c                amplitude1_m
-                0xa0000020                isPlaying
-                0xa0000024                . = ALIGN (0x4)
-                0xa0000024                _sdata_end = .
+ .sdata         0xa0000008        0x1 build/default/production/_ext/1360937237/playtune.o
+                0xa0000008                isPlaying
+                0xa000000c                . = ALIGN (0x4)
+ *fill*         0xa0000009        0x3 
+                0xa000000c                _sdata_end = .
 
 .lit8
  *(.lit8)
 
 .lit4
  *(.lit4)
-                0xa0000024                . = ALIGN (0x4)
-                0xa0000024                _data_end = .
-                0xa0000024                _bss_begin = .
+                0xa000000c                . = ALIGN (0x4)
+                0xa000000c                _data_end = .
+                0xa000000c                _bss_begin = .
 
-.sbss           0xa0000024      0x114
-                0xa0000024                _sbss_begin = .
+.sbss           0xa000000c       0x54
+                0xa000000c                _sbss_begin = .
  *(.dynsbss)
  *(.sbss .sbss.* .gnu.linkonce.sb.*)
- .sbss          0xa0000024        0x2 build/default/production/_ext/1688732426/system_interrupt.o
-                0xa0000024                bufferBFull
-                0xa0000025                bufferAFull
- *fill*         0xa0000026        0x2 
- .sbss          0xa0000028        0xc build/default/production/_ext/1688732426/system_exceptions.o
- .sbss          0xa0000034        0x8 build/default/production/_ext/1360937237/main.o
-                0xa0000034                accum2t
-                0xa0000038                accum1t
- .sbss          0xa000003c       0xd4 build/default/production/_ext/1360937237/playtune.o
-                0xa000003c                isUpdateNote
-                0xa000003d                isStopNote
-                0xa000003e                play_note
-                0xa000003f                tone_channel
-                0xa0000040                songIndex
-                0xa0000044                time_play_count
-                0xa0000048                time_play
-                0xa000004c                envelope_ptr6
-                0xa0000050                envelope_count6
-                0xa0000054                envelope_ptr5
-                0xa0000058                envelope_count5
-                0xa000005c                envelope_ptr4
-                0xa0000060                envelope_count4
-                0xa0000064                envelope_ptr3
-                0xa0000068                envelope_count3
-                0xa000006c                envelope_ptr2
-                0xa0000070                envelope_count2
-                0xa0000074                envelope_ptr1
-                0xa0000078                envelope_count1
-                0xa000007c                output6
-                0xa0000080                temp6_m
-                0xa0000084                tuningWord6_m
-                0xa0000088                accum6_m
-                0xa000008c                tuningWord6_c
-                0xa0000090                accum6_c
-                0xa0000094                output5
-                0xa0000098                temp5_m
-                0xa000009c                tuningWord5_m
-                0xa00000a0                accum5_m
-                0xa00000a4                tuningWord5_c
-                0xa00000a8                accum5_c
-                0xa00000ac                output4
-                0xa00000b0                temp4_m
-                0xa00000b4                tuningWord4_m
-                0xa00000b8                accum4_m
-                0xa00000bc                tuningWord4_c
-                0xa00000c0                accum4_c
-                0xa00000c4                output3
-                0xa00000c8                temp3_m
-                0xa00000cc                tuningWord3_m
-                0xa00000d0                accum3_m
-                0xa00000d4                tuningWord3_c
-                0xa00000d8                accum3_c
-                0xa00000dc                output2
-                0xa00000e0                temp2_m
-                0xa00000e4                tuningWord2_m
-                0xa00000e8                accum2_m
-                0xa00000ec                tuningWord2_c
-                0xa00000f0                accum2_c
-                0xa00000f4                output1
-                0xa00000f8                temp1_m
-                0xa00000fc                tuningWord1_m
-                0xa0000100                accum1_m
-                0xa0000104                tuningWord1_c
-                0xa0000108                accum1_c
-                0xa000010c                buffer_position
-                0xa000010d                isFillFlag
- .sbss          0xa0000110        0x2 build/default/production/_ext/118685767/drv_i2s.o
+ .sbss          0xa000000c        0x2 build/default/production/_ext/1688732426/system_interrupt.o
+                0xa000000c                bufferBFull
+                0xa000000d                bufferAFull
+ *fill*         0xa000000e        0x2 
+ .sbss          0xa0000010        0xc build/default/production/_ext/1688732426/system_exceptions.o
+ .sbss          0xa000001c        0x8 build/default/production/_ext/1360937237/main.o
+                0xa000001c                accum2t
+                0xa0000020                accum1t
+ .sbss          0xa0000024       0x14 build/default/production/_ext/1360937237/playtune.o
+                0xa0000024                isUpdateNote
+                0xa0000025                isStopNote
+                0xa0000026                play_note
+                0xa0000027                tone_channel
+                0xa0000028                songIndex
+                0xa000002c                time_play_count
+                0xa0000030                time_play
+                0xa0000034                buffer_position
+                0xa0000035                isFillFlag
+ .sbss          0xa0000038        0x2 build/default/production/_ext/118685767/drv_i2s.o
  *(.scommon)
- *fill*         0xa0000112        0x2 
- .scommon       0xa0000114        0x4 build/default/production/_ext/1360937237/app.o
-                0xa0000114                appData
- .scommon       0xa0000118       0x11 build/default/production/_ext/1360937237/playtune.o
-                0xa0000118                opcode
-                0xa000011c                buffer_pp
-                0xa0000120                chan
-                0xa0000124                temp_output1
-                0xa0000128                cmd
- *fill*         0xa0000129        0x3 
- .scommon       0xa000012c        0x2 build/default/production/_ext/118685767/drv_i2s.o
-                0xa000012c                gDrvI2SCommonDataObj
- *fill*         0xa000012e        0x2 
- .scommon       0xa0000130        0x8 build/default/production/_ext/1271179505/sys_devcon.o
-                0xa0000130                sysDevconObj
-                0xa0000138                _sbss_end = .
-                0xa0000138                . = ALIGN (0x4)
+ *fill*         0xa000003a        0x2 
+ .scommon       0xa000003c        0x4 build/default/production/_ext/1360937237/app.o
+                0xa000003c                appData
+ .scommon       0xa0000040       0x11 build/default/production/_ext/1360937237/playtune.o
+                0xa0000040                opcode
+                0xa0000044                buffer_pp
+                0xa0000048                chan
+                0xa000004c                temp_output1
+                0xa0000050                cmd
+ *fill*         0xa0000051        0x3 
+ .scommon       0xa0000054        0x2 build/default/production/_ext/118685767/drv_i2s.o
+                0xa0000054                gDrvI2SCommonDataObj
+ *fill*         0xa0000056        0x2 
+ .scommon       0xa0000058        0x8 build/default/production/_ext/1271179505/sys_devcon.o
+                0xa0000058                sysDevconObj
+                0xa0000060                _sbss_end = .
+                0xa0000060                . = ALIGN (0x4)
 
-.bss            0xa0000138      0x954
+.bss            0xa0000060      0xa2c
  *(.dynbss)
  *(COMMON)
- COMMON         0xa0000138        0xc build/default/production/_ext/1688732426/system_init.o
-                0xa0000138                sysObj
- COMMON         0xa0000144      0x800 build/default/production/_ext/1360937237/playtune.o
-                0xa0000144                buffer_b
-                0xa0000544                buffer_a
+ COMMON         0xa0000060        0xc build/default/production/_ext/1688732426/system_init.o
+                0xa0000060                sysObj
+ COMMON         0xa000006c      0x8d8 build/default/production/_ext/1360937237/playtune.o
+                0xa000006c                buffer_b
+                0xa000046c                buffer_a
+                0xa000086c                ch
  COMMON         0xa0000944      0x108 build/default/production/_ext/118685767/drv_i2s.o
                 0xa0000944                gDrvI2SClientObj
                 0xa0000960                gDrvI2SBufferQObj
@@ -1562,7 +1511,7 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000    0x21387
+.debug_info     0x00000000    0x20f32
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000     0x1811 build/default/production/_ext/639803181/sys_clk_static.o
  .debug_info    0x00001811     0x1e0f build/default/production/_ext/822048611/sys_ports_static.o
@@ -1572,19 +1521,19 @@ END GROUP
  .debug_info    0x00007227      0x997 build/default/production/_ext/1688732426/system_tasks.o
  .debug_info    0x00007bbe      0x918 build/default/production/_ext/1360937237/app.o
  .debug_info    0x000084d6     0x25f9 build/default/production/_ext/1360937237/main.o
- .debug_info    0x0000aacf     0x13a7 build/default/production/_ext/1360937237/playtune.o
- .debug_info    0x0000be76     0x805b build/default/production/_ext/118685767/drv_i2s.o
- .debug_info    0x00013ed1      0xf44 build/default/production/_ext/1271179505/sys_devcon.o
- .debug_info    0x00014e15      0x754 build/default/production/_ext/1271179505/sys_devcon_pic32mx.o
- .debug_info    0x00015569     0x6f9c build/default/production/_ext/65930274/sys_dma.o
- .debug_info    0x0001c505     0x1298 build/default/production/_ext/122796885/sys_int_pic32.o
- .debug_info    0x0001d79d     0x3869 build/default/production/_ext/77319752/sys_ports.o
- .debug_info    0x00021006       0xf5 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-bootstrap-exception-handler.o)
- .debug_info    0x000210fb       0xce c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-reset.o)
- .debug_info    0x000211c9       0xd6 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-bootstrap.o)
- .debug_info    0x0002129f       0xe8 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(defaultinterrupt.o)
+ .debug_info    0x0000aacf      0xf52 build/default/production/_ext/1360937237/playtune.o
+ .debug_info    0x0000ba21     0x805b build/default/production/_ext/118685767/drv_i2s.o
+ .debug_info    0x00013a7c      0xf44 build/default/production/_ext/1271179505/sys_devcon.o
+ .debug_info    0x000149c0      0x754 build/default/production/_ext/1271179505/sys_devcon_pic32mx.o
+ .debug_info    0x00015114     0x6f9c build/default/production/_ext/65930274/sys_dma.o
+ .debug_info    0x0001c0b0     0x1298 build/default/production/_ext/122796885/sys_int_pic32.o
+ .debug_info    0x0001d348     0x3869 build/default/production/_ext/77319752/sys_ports.o
+ .debug_info    0x00020bb1       0xf5 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-bootstrap-exception-handler.o)
+ .debug_info    0x00020ca6       0xce c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-reset.o)
+ .debug_info    0x00020d74       0xd6 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-bootstrap.o)
+ .debug_info    0x00020e4a       0xe8 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(defaultinterrupt.o)
 
-.debug_abbrev   0x00000000     0x1d7c
+.debug_abbrev   0x00000000     0x1db0
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x26a build/default/production/_ext/639803181/sys_clk_static.o
  .debug_abbrev  0x0000026a      0x138 build/default/production/_ext/822048611/sys_ports_static.o
@@ -1594,19 +1543,19 @@ END GROUP
  .debug_abbrev  0x0000079f       0xc3 build/default/production/_ext/1688732426/system_tasks.o
  .debug_abbrev  0x00000862       0xd3 build/default/production/_ext/1360937237/app.o
  .debug_abbrev  0x00000935      0x288 build/default/production/_ext/1360937237/main.o
- .debug_abbrev  0x00000bbd      0x121 build/default/production/_ext/1360937237/playtune.o
- .debug_abbrev  0x00000cde      0x448 build/default/production/_ext/118685767/drv_i2s.o
- .debug_abbrev  0x00001126      0x285 build/default/production/_ext/1271179505/sys_devcon.o
- .debug_abbrev  0x000013ab      0x162 build/default/production/_ext/1271179505/sys_devcon_pic32mx.o
- .debug_abbrev  0x0000150d      0x3d0 build/default/production/_ext/65930274/sys_dma.o
- .debug_abbrev  0x000018dd      0x1d0 build/default/production/_ext/122796885/sys_int_pic32.o
- .debug_abbrev  0x00001aad      0x22f build/default/production/_ext/77319752/sys_ports.o
- .debug_abbrev  0x00001cdc       0x28 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-bootstrap-exception-handler.o)
- .debug_abbrev  0x00001d04       0x28 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-reset.o)
- .debug_abbrev  0x00001d2c       0x28 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-bootstrap.o)
- .debug_abbrev  0x00001d54       0x28 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(defaultinterrupt.o)
+ .debug_abbrev  0x00000bbd      0x155 build/default/production/_ext/1360937237/playtune.o
+ .debug_abbrev  0x00000d12      0x448 build/default/production/_ext/118685767/drv_i2s.o
+ .debug_abbrev  0x0000115a      0x285 build/default/production/_ext/1271179505/sys_devcon.o
+ .debug_abbrev  0x000013df      0x162 build/default/production/_ext/1271179505/sys_devcon_pic32mx.o
+ .debug_abbrev  0x00001541      0x3d0 build/default/production/_ext/65930274/sys_dma.o
+ .debug_abbrev  0x00001911      0x1d0 build/default/production/_ext/122796885/sys_int_pic32.o
+ .debug_abbrev  0x00001ae1      0x22f build/default/production/_ext/77319752/sys_ports.o
+ .debug_abbrev  0x00001d10       0x28 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-bootstrap-exception-handler.o)
+ .debug_abbrev  0x00001d38       0x28 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-reset.o)
+ .debug_abbrev  0x00001d60       0x28 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-bootstrap.o)
+ .debug_abbrev  0x00001d88       0x28 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(defaultinterrupt.o)
 
-.debug_line     0x00000000     0x5544
+.debug_line     0x00000000     0x54bc
  *(.debug_line)
  .debug_line    0x00000000      0x47c build/default/production/_ext/639803181/sys_clk_static.o
  .debug_line    0x0000047c      0x45e build/default/production/_ext/822048611/sys_ports_static.o
@@ -1615,20 +1564,20 @@ END GROUP
  .debug_line    0x00000ff8       0xf8 build/default/production/_ext/1688732426/system_exceptions.o
  .debug_line    0x000010f0      0x27c build/default/production/_ext/1688732426/system_tasks.o
  .debug_line    0x0000136c       0xef build/default/production/_ext/1360937237/app.o
- .debug_line    0x0000145b      0x252 build/default/production/_ext/1360937237/main.o
- .debug_line    0x000016ad      0x240 build/default/production/_ext/1360937237/playtune.o
- .debug_line    0x000018ed     0x1819 build/default/production/_ext/118685767/drv_i2s.o
- .debug_line    0x00003106      0x5bc build/default/production/_ext/1271179505/sys_devcon.o
- .debug_line    0x000036c2      0x390 build/default/production/_ext/1271179505/sys_devcon_pic32mx.o
- .debug_line    0x00003a52      0xd2c build/default/production/_ext/65930274/sys_dma.o
- .debug_line    0x0000477e      0x39e build/default/production/_ext/122796885/sys_int_pic32.o
- .debug_line    0x00004b1c      0x7af build/default/production/_ext/77319752/sys_ports.o
- .debug_line    0x000052cb       0xa7 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-bootstrap-exception-handler.o)
- .debug_line    0x00005372       0x94 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-reset.o)
- .debug_line    0x00005406       0x98 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-bootstrap.o)
- .debug_line    0x0000549e       0xa6 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(defaultinterrupt.o)
+ .debug_line    0x0000145b      0x254 build/default/production/_ext/1360937237/main.o
+ .debug_line    0x000016af      0x1b6 build/default/production/_ext/1360937237/playtune.o
+ .debug_line    0x00001865     0x1819 build/default/production/_ext/118685767/drv_i2s.o
+ .debug_line    0x0000307e      0x5bc build/default/production/_ext/1271179505/sys_devcon.o
+ .debug_line    0x0000363a      0x390 build/default/production/_ext/1271179505/sys_devcon_pic32mx.o
+ .debug_line    0x000039ca      0xd2c build/default/production/_ext/65930274/sys_dma.o
+ .debug_line    0x000046f6      0x39e build/default/production/_ext/122796885/sys_int_pic32.o
+ .debug_line    0x00004a94      0x7af build/default/production/_ext/77319752/sys_ports.o
+ .debug_line    0x00005243       0xa7 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-bootstrap-exception-handler.o)
+ .debug_line    0x000052ea       0x94 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-reset.o)
+ .debug_line    0x0000537e       0x98 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-bootstrap.o)
+ .debug_line    0x00005416       0xa6 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(defaultinterrupt.o)
 
-.debug_frame    0x00000000      0xa44
+.debug_frame    0x00000000      0xa2c
  *(.debug_frame)
  .debug_frame   0x00000000       0xa0 build/default/production/_ext/639803181/sys_clk_static.o
  .debug_frame   0x000000a0       0x20 build/default/production/_ext/822048611/sys_ports_static.o
@@ -1638,17 +1587,17 @@ END GROUP
  .debug_frame   0x00000174       0x28 build/default/production/_ext/1688732426/system_tasks.o
  .debug_frame   0x0000019c       0x30 build/default/production/_ext/1360937237/app.o
  .debug_frame   0x000001cc       0x80 build/default/production/_ext/1360937237/main.o
- .debug_frame   0x0000024c       0x64 build/default/production/_ext/1360937237/playtune.o
- .debug_frame   0x000002b0      0x1a4 build/default/production/_ext/118685767/drv_i2s.o
- .debug_frame   0x00000454       0xe8 build/default/production/_ext/1271179505/sys_devcon.o
- .debug_frame   0x0000053c       0x28 build/default/production/_ext/1271179505/sys_devcon_pic32mx.o
- .debug_frame   0x00000564      0x1e4 build/default/production/_ext/65930274/sys_dma.o
- .debug_frame   0x00000748       0x90 build/default/production/_ext/122796885/sys_int_pic32.o
- .debug_frame   0x000007d8      0x1e0 build/default/production/_ext/77319752/sys_ports.o
- .debug_frame   0x000009b8       0x2c c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-bootstrap-exception-handler.o)
- .debug_frame   0x000009e4       0x20 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-reset.o)
- .debug_frame   0x00000a04       0x20 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-bootstrap.o)
- .debug_frame   0x00000a24       0x20 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(defaultinterrupt.o)
+ .debug_frame   0x0000024c       0x4c build/default/production/_ext/1360937237/playtune.o
+ .debug_frame   0x00000298      0x1a4 build/default/production/_ext/118685767/drv_i2s.o
+ .debug_frame   0x0000043c       0xe8 build/default/production/_ext/1271179505/sys_devcon.o
+ .debug_frame   0x00000524       0x28 build/default/production/_ext/1271179505/sys_devcon_pic32mx.o
+ .debug_frame   0x0000054c      0x1e4 build/default/production/_ext/65930274/sys_dma.o
+ .debug_frame   0x00000730       0x90 build/default/production/_ext/122796885/sys_int_pic32.o
+ .debug_frame   0x000007c0      0x1e0 build/default/production/_ext/77319752/sys_ports.o
+ .debug_frame   0x000009a0       0x2c c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-bootstrap-exception-handler.o)
+ .debug_frame   0x000009cc       0x20 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-reset.o)
+ .debug_frame   0x000009ec       0x20 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-bootstrap.o)
+ .debug_frame   0x00000a0c       0x20 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(defaultinterrupt.o)
 
 .debug_str      0x00000000      0x4f0
  *(.debug_str)
@@ -1672,20 +1621,20 @@ END GROUP
  .debug_str     0x000004f0        0x0 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-bootstrap.o)
  .debug_str     0x000004f0        0x0 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(defaultinterrupt.o)
 
-.debug_loc      0x00000000     0x67b4
+.debug_loc      0x00000000     0x67d4
  *(.debug_loc)
  .debug_loc     0x00000000       0x49 build/default/production/_ext/639803181/sys_clk_static.o
  .debug_loc     0x00000049       0x21 build/default/production/_ext/1688732426/system_init.o
  .debug_loc     0x0000006a       0x14 build/default/production/_ext/1360937237/app.o
  .debug_loc     0x0000007e       0x92 build/default/production/_ext/1360937237/main.o
- .debug_loc     0x00000110       0x14 build/default/production/_ext/1360937237/playtune.o
- .debug_loc     0x00000124     0x4090 build/default/production/_ext/118685767/drv_i2s.o
- .debug_loc     0x000041b4       0xf0 build/default/production/_ext/1271179505/sys_devcon.o
- .debug_loc     0x000042a4       0x91 build/default/production/_ext/1271179505/sys_devcon_pic32mx.o
- .debug_loc     0x00004335     0x1543 build/default/production/_ext/65930274/sys_dma.o
- .debug_loc     0x00005878       0x8d build/default/production/_ext/122796885/sys_int_pic32.o
- .debug_loc     0x00005905      0xe83 build/default/production/_ext/77319752/sys_ports.o
- .debug_loc     0x00006788       0x2c c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-bootstrap-exception-handler.o)
+ .debug_loc     0x00000110       0x34 build/default/production/_ext/1360937237/playtune.o
+ .debug_loc     0x00000144     0x4090 build/default/production/_ext/118685767/drv_i2s.o
+ .debug_loc     0x000041d4       0xf0 build/default/production/_ext/1271179505/sys_devcon.o
+ .debug_loc     0x000042c4       0x91 build/default/production/_ext/1271179505/sys_devcon_pic32mx.o
+ .debug_loc     0x00004355     0x1543 build/default/production/_ext/65930274/sys_dma.o
+ .debug_loc     0x00005898       0x8d build/default/production/_ext/122796885/sys_int_pic32.o
+ .debug_loc     0x00005925      0xe83 build/default/production/_ext/77319752/sys_ports.o
+ .debug_loc     0x000067a8       0x2c c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-bootstrap-exception-handler.o)
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -1798,206 +1747,206 @@ LOAD data_init
                 0xbfc00480       0x2c c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\debug-exception-return.o
                 0xbfc00480                __DbgExecReturn
 
-.rodata         0x9d000000     0x4944
- .rodata        0x9d000000     0x4944 build/default/production/_ext/1360937237/playtune.o
+.rodata         0x9d000000     0x57a8
+ .rodata        0x9d000000     0x57a8 build/default/production/_ext/1360937237/playtune.o
                 0x9d000000                tuningWords
                 0x9d000200                songData1
-                0x9d002844                wavetable
-                0x9d004844                envelope
+                0x9d0017a8                wavetable
+                0x9d0037a8                envelope
 
 .text.DRV_I2S_Initialize
-                0x9d004944      0xca4
+                0x9d0057a8      0xca4
  .text.DRV_I2S_Initialize
-                0x9d004944      0xca4 build/default/production/_ext/118685767/drv_i2s.o
-                0x9d004944                DRV_I2S_Initialize
+                0x9d0057a8      0xca4 build/default/production/_ext/118685767/drv_i2s.o
+                0x9d0057a8                DRV_I2S_Initialize
 
 .text.updateNote
-                0x9d0055e8      0x7e8
+                0x9d00644c      0x2c0
  .text.updateNote
-                0x9d0055e8      0x7e8 build/default/production/_ext/1360937237/playtune.o
-                0x9d0055e8                updateNote
-
-.text.channel1_generate
-                0x9d005dd0      0x454
- .text.channel1_generate
-                0x9d005dd0      0x454 build/default/production/_ext/1360937237/playtune.o
-                0x9d005dd0                channel1_generate
+                0x9d00644c      0x2c0 build/default/production/_ext/1360937237/playtune.o
+                0x9d00644c                updateNote
 
 .text.i2s_init_DMA
-                0x9d006224      0x1ec
+                0x9d00670c      0x1ec
  .text.i2s_init_DMA
-                0x9d006224      0x1ec build/default/production/_ext/1360937237/main.o
-                0x9d006224                i2s_init_DMA
+                0x9d00670c      0x1ec build/default/production/_ext/1360937237/main.o
+                0x9d00670c                i2s_init_DMA
 
-.text.main      0x9d006410      0x178
- .text.main     0x9d006410      0x178 build/default/production/_ext/1360937237/main.o
-                0x9d006410                main
+.text.main      0x9d0068f8      0x178
+ .text.main     0x9d0068f8      0x178 build/default/production/_ext/1360937237/main.o
+                0x9d0068f8                main
 
-.rodata         0x9d006588      0x128
- .rodata        0x9d006588      0x128 build/default/production/_ext/1688732426/system_exceptions.o
+.text.channel1_generate
+                0x9d006a70      0x160
+ .text.channel1_generate
+                0x9d006a70      0x160 build/default/production/_ext/1360937237/playtune.o
+                0x9d006a70                channel1_generate
+
+.rodata         0x9d006bd0      0x128
+ .rodata        0x9d006bd0      0x128 build/default/production/_ext/1688732426/system_exceptions.o
 
 .text.init_i2s1
-                0x9d0066b0      0x120
+                0x9d006cf8      0x120
  .text.init_i2s1
-                0x9d0066b0      0x120 build/default/production/_ext/1360937237/main.o
-                0x9d0066b0                init_i2s1
+                0x9d006cf8      0x120 build/default/production/_ext/1360937237/main.o
+                0x9d006cf8                init_i2s1
 
 .text.SYS_Initialize
-                0x9d0067d0       0xec
+                0x9d006e18       0xec
  .text.SYS_Initialize
-                0x9d0067d0       0xec build/default/production/_ext/1688732426/system_init.o
-                0x9d0067d0                SYS_Initialize
+                0x9d006e18       0xec build/default/production/_ext/1688732426/system_init.o
+                0x9d006e18                SYS_Initialize
 
 .text.SYS_PORTS_Initialize
-                0x9d0068bc       0xdc
+                0x9d006f04       0xdc
  .text.SYS_PORTS_Initialize
-                0x9d0068bc       0xdc build/default/production/_ext/822048611/sys_ports_static.o
-                0x9d0068bc                SYS_PORTS_Initialize
+                0x9d006f04       0xdc build/default/production/_ext/822048611/sys_ports_static.o
+                0x9d006f04                SYS_PORTS_Initialize
 
 .text.general_exception
-                0x9d006998       0xdc
+                0x9d006fe0       0xdc
  .text.general_exception
-                0x9d006998       0xdc c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(general-exception.o)
-                0x9d006998                _general_exception_context
+                0x9d006fe0       0xdc c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(general-exception.o)
+                0x9d006fe0                _general_exception_context
 
 .text.timer3_init
-                0x9d006a74       0xb4
+                0x9d0070bc       0xb4
  .text.timer3_init
-                0x9d006a74       0xb4 build/default/production/_ext/1360937237/main.o
-                0x9d006a74                timer3_init
+                0x9d0070bc       0xb4 build/default/production/_ext/1360937237/main.o
+                0x9d0070bc                timer3_init
 
 .text._IntHandlerTimer3
-                0x9d006b28       0xb4
+                0x9d007170       0xb4
  .text._IntHandlerTimer3
-                0x9d006b28       0xb4 build/default/production/_ext/1360937237/playtune.o
-                0x9d006b28                _IntHandlerTimer3
+                0x9d007170       0xb4 build/default/production/_ext/1360937237/playtune.o
+                0x9d007170                _IntHandlerTimer3
 
-.dinit          0x9d006bdc       0xb0
- .dinit         0x9d006bdc       0xb0 data_init
+.dinit          0x9d007224       0xa0
+ .dinit         0x9d007224       0xa0 data_init
 
 .text._IntHandlerSysDmaCh0
-                0x9d006c8c       0x8c
+                0x9d0072c4       0x8c
  .text._IntHandlerSysDmaCh0
-                0x9d006c8c       0x8c build/default/production/_ext/1688732426/system_interrupt.o
-                0x9d006c8c                _IntHandlerSysDmaCh0
+                0x9d0072c4       0x8c build/default/production/_ext/1688732426/system_interrupt.o
+                0x9d0072c4                _IntHandlerSysDmaCh0
 
 .text._IntHandlerSysDmaCh1
-                0x9d006d18       0x8c
+                0x9d007350       0x8c
  .text._IntHandlerSysDmaCh1
-                0x9d006d18       0x8c build/default/production/_ext/1688732426/system_interrupt.o
-                0x9d006d18                _IntHandlerSysDmaCh1
+                0x9d007350       0x8c build/default/production/_ext/1688732426/system_interrupt.o
+                0x9d007350                _IntHandlerSysDmaCh1
 
 .text.SYS_CLK_Initialize
-                0x9d006da4       0x7c
+                0x9d0073dc       0x7c
  .text.SYS_CLK_Initialize
-                0x9d006da4       0x7c build/default/production/_ext/639803181/sys_clk_static.o
-                0x9d006da4                SYS_CLK_Initialize
+                0x9d0073dc       0x7c build/default/production/_ext/639803181/sys_clk_static.o
+                0x9d0073dc                SYS_CLK_Initialize
 
 .text.SYS_DMA_Initialize
-                0x9d006e20       0x78
+                0x9d007458       0x78
  .text.SYS_DMA_Initialize
-                0x9d006e20       0x78 build/default/production/_ext/65930274/sys_dma.o
-                0x9d006e20                SYS_DMA_Initialize
+                0x9d007458       0x78 build/default/production/_ext/65930274/sys_dma.o
+                0x9d007458                SYS_DMA_Initialize
 
 .text._IntHandlerDrvI2SInstance0
-                0x9d006e98       0x74
+                0x9d0074d0       0x74
  .text._IntHandlerDrvI2SInstance0
-                0x9d006e98       0x74 build/default/production/_ext/1688732426/system_interrupt.o
-                0x9d006e98                _IntHandlerDrvI2SInstance0
+                0x9d0074d0       0x74 build/default/production/_ext/1688732426/system_interrupt.o
+                0x9d0074d0                _IntHandlerDrvI2SInstance0
 
-.rodata         0x9d006f0c       0x64
- .rodata        0x9d006f0c       0x64 build/default/production/_ext/1688732426/system_init.o
-                0x9d006f0c                sysDmaInit
-                0x9d006f10                sysDevconInit
-                0x9d006f14                drvI2S0InitData
+.rodata         0x9d007544       0x64
+ .rodata        0x9d007544       0x64 build/default/production/_ext/1688732426/system_init.o
+                0x9d007544                sysDmaInit
+                0x9d007548                sysDevconInit
+                0x9d00754c                drvI2S0InitData
 
 .text.SYS_DEVCON_SystemUnlock
-                0x9d006f70       0x58
+                0x9d0075a8       0x58
  .text.SYS_DEVCON_SystemUnlock
-                0x9d006f70       0x58 build/default/production/_ext/1271179505/sys_devcon.o
-                0x9d006f70                SYS_DEVCON_SystemUnlock
+                0x9d0075a8       0x58 build/default/production/_ext/1271179505/sys_devcon.o
+                0x9d0075a8                SYS_DEVCON_SystemUnlock
 
 .text.SYS_DEVCON_PerformanceConfig
-                0x9d006fc8       0x58
+                0x9d007600       0x58
  .text.SYS_DEVCON_PerformanceConfig
-                0x9d006fc8       0x58 build/default/production/_ext/1271179505/sys_devcon_pic32mx.o
-                0x9d006fc8                SYS_DEVCON_PerformanceConfig
+                0x9d007600       0x58 build/default/production/_ext/1271179505/sys_devcon_pic32mx.o
+                0x9d007600                SYS_DEVCON_PerformanceConfig
 
 .text.main_entry
-                0x9d007020       0x54
+                0x9d007658       0x54
  .text.main_entry
-                0x9d007020       0x54 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib/./proc/32MX250F128B/crt0_mips32r2.o
-                0x9d007054                __crt0_exit
+                0x9d007658       0x54 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib/./proc/32MX250F128B/crt0_mips32r2.o
+                0x9d00768c                __crt0_exit
 
-.text.delay_ms  0x9d007074       0x4c
+.text.delay_ms  0x9d0076ac       0x4c
  .text.delay_ms
-                0x9d007074       0x4c build/default/production/_ext/1360937237/main.o
-                0x9d007074                delay_ms
+                0x9d0076ac       0x4c build/default/production/_ext/1360937237/main.o
+                0x9d0076ac                delay_ms
 
 .text.SYS_DEVCON_SystemLock
-                0x9d0070c0       0x48
+                0x9d0076f8       0x48
  .text.SYS_DEVCON_SystemLock
-                0x9d0070c0       0x48 build/default/production/_ext/1271179505/sys_devcon.o
-                0x9d0070c0                SYS_DEVCON_SystemLock
+                0x9d0076f8       0x48 build/default/production/_ext/1271179505/sys_devcon.o
+                0x9d0076f8                SYS_DEVCON_SystemLock
 
 .text._bootstrap_exception_handler
-                0x9d007108       0x48
+                0x9d007740       0x48
  .text._bootstrap_exception_handler
-                0x9d007108       0x48 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-bootstrap-exception-handler.o)
-                0x9d007108                _bootstrap_exception_handler
+                0x9d007740       0x48 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-bootstrap-exception-handler.o)
+                0x9d007740                _bootstrap_exception_handler
 
 .vector_default
-                0x9d007150       0x48
+                0x9d007788       0x48
  .vector_default
-                0x9d007150       0x48 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(defaultinterrupt.o)
-                0x9d007150                _DefaultInterrupt
+                0x9d007788       0x48 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(defaultinterrupt.o)
+                0x9d007788                _DefaultInterrupt
 
-.text           0x9d007198       0x44
- .text          0x9d007198       0x44 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\pic32_software_reset.o
-                0x9d007198                __pic32_software_reset
+.text           0x9d0077d0       0x44
+ .text          0x9d0077d0       0x44 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\pic32_software_reset.o
+                0x9d0077d0                __pic32_software_reset
 
 .text._general_exception_handler
-                0x9d0071dc       0x40
+                0x9d007814       0x40
  .text._general_exception_handler
-                0x9d0071dc       0x40 build/default/production/_ext/1688732426/system_exceptions.o
-                0x9d0071dc                _general_exception_handler
+                0x9d007814       0x40 build/default/production/_ext/1688732426/system_exceptions.o
+                0x9d007814                _general_exception_handler
 
 .text.SYS_INT_Initialize
-                0x9d00721c       0x18
+                0x9d007854       0x18
  .text.SYS_INT_Initialize
-                0x9d00721c       0x18 build/default/production/_ext/122796885/sys_int_pic32.o
-                0x9d00721c                SYS_INT_Initialize
+                0x9d007854       0x18 build/default/production/_ext/122796885/sys_int_pic32.o
+                0x9d007854                SYS_INT_Initialize
 
-.text           0x9d007234       0x18
- .text          0x9d007234       0x18 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-nmi-handler.o)
-                0x9d007234                _nmi_handler
+.text           0x9d00786c       0x18
+ .text          0x9d00786c       0x18 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-nmi-handler.o)
+                0x9d00786c                _nmi_handler
 
 .text.SYS_DEVCON_Initialize
-                0x9d00724c       0x14
+                0x9d007884       0x14
  .text.SYS_DEVCON_Initialize
-                0x9d00724c       0x14 build/default/production/_ext/1271179505/sys_devcon.o
-                0x9d00724c                SYS_DEVCON_Initialize
+                0x9d007884       0x14 build/default/production/_ext/1271179505/sys_devcon.o
+                0x9d007884                SYS_DEVCON_Initialize
 
 .text.SYS_CLK_SystemFrequencyGet
-                0x9d007260        0xc
+                0x9d007898        0xc
  .text.SYS_CLK_SystemFrequencyGet
-                0x9d007260        0xc build/default/production/_ext/639803181/sys_clk_static.o
-                0x9d007260                SYS_CLK_SystemFrequencyGet
+                0x9d007898        0xc build/default/production/_ext/639803181/sys_clk_static.o
+                0x9d007898                SYS_CLK_SystemFrequencyGet
 
 .text.APP_Initialize
-                0x9d00726c        0x8
+                0x9d0078a4        0x8
  .text.APP_Initialize
-                0x9d00726c        0x8 build/default/production/_ext/1360937237/app.o
-                0x9d00726c                APP_Initialize
+                0x9d0078a4        0x8 build/default/production/_ext/1360937237/app.o
+                0x9d0078a4                APP_Initialize
 
 .text._on_reset
-                0x9d007274        0x8
+                0x9d0078ac        0x8
  .text._on_reset
-                0x9d007274        0x8 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-reset.o)
-                0x9d007274                _on_reset
+                0x9d0078ac        0x8 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-reset.o)
+                0x9d0078ac                _on_reset
 
 .text._on_bootstrap
-                0x9d00727c        0x8
+                0x9d0078b4        0x8
  .text._on_bootstrap
-                0x9d00727c        0x8 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-bootstrap.o)
-                0x9d00727c                _on_bootstrap
+                0x9d0078b4        0x8 c:/program files (x86)/microchip/xc32/v1.44/bin/bin/../../lib/gcc/pic32mx/4.8.3/../../../../pic32mx/lib\libpic32.a(default-on-bootstrap.o)
+                0x9d0078b4                _on_bootstrap
