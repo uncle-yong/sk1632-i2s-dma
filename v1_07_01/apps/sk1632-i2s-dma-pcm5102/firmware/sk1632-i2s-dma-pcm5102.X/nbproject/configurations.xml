@@ -25,6 +25,7 @@
         <itemPath>../src/songdata2.h</itemPath>
         <itemPath>../src/tuningwords.h</itemPath>
         <itemPath>../src/wavetable.h</itemPath>
+        <itemPath>../src/playtune.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="framework" projectFiles="true">
         <logicalFolder name="f1" displayName="driver" projectFiles="true">
@@ -84,8 +85,8 @@
           </logicalFolder>
         </logicalFolder>
         <itemPath>../src/app.c</itemPath>
-        <itemPath>../src/main.c</itemPath>
         <itemPath>../src/playtune.c</itemPath>
+        <itemPath>../src/main.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="framework" projectFiles="true">
         <logicalFolder name="f1" displayName="driver" projectFiles="true">
@@ -335,6 +336,7 @@
         <property key="UART1" value="true"/>
         <property key="UART2" value="true"/>
         <property key="USB" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

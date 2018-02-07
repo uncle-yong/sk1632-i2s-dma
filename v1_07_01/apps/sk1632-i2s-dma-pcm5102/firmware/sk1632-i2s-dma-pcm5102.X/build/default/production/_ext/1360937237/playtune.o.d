@@ -215,4 +215,5 @@ build/default/production/_ext/1360937237/playtune.o:  \
 ../src/wavetable.h  \
 ../src/songdata.h  \
  ../src/tuningwords.h  \
-../src/main.h 
+../src/main.h  \
+../src/playtune.h 

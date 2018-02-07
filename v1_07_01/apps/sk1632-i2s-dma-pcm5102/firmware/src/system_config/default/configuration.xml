@@ -111,6 +111,7 @@
         <Name>system_interrupt.c</Name>
         <Path>Source Files/app/system_config/default</Path>
         <Checksum>C1BD99986C32E9BACEC2AD618920048F</Checksum>
+        <ProjectFileChecksum>AC9E2E6B7A7AB54895182B06ADFFF005</ProjectFileChecksum>
       </Template>
       <Template>
         <Name>sys_clk_static.c</Name>

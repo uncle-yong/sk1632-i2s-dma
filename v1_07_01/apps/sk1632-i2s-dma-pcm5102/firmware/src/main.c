@@ -64,6 +64,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "system/common/sys_module.h"   // SYS function prototypes
 #include "sys/kmem.h"                   // KVA_TO_PA macro
 #include "main.h"
+#include "playtune.h"
 
 void init_i2s1();
 void delay_ms(unsigned int count);
@@ -97,6 +98,7 @@ unsigned long tuningWord2t = 236223201;
 
 extern volatile unsigned char isUpdateNote;
 
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Main Entry Point
@@ -111,14 +113,8 @@ int main ( void )
     TRISA = 0x0000;
     TRISB = 0x0000;
     PORTA = 0x0000;
+    LATB = 0x0000;
 
-//    ch[0].amplitude_m = MOD_AMPL;
-//    ch[1].amplitude_m = MOD_AMPL;
-//    ch[2].amplitude_m = MOD_AMPL;
-//    ch[3].amplitude_m = MOD_AMPL;
-//    ch[4].amplitude_m = MOD_AMPL;
-//    ch[5].amplitude_m = MOD_AMPL;
-    
     // Fill all buffers first at start.
     buffer_pp = &buffer_a[0];
     channel1_generate();
@@ -136,7 +132,24 @@ int main ( void )
     time_play_count = 0;
     time_play = 1000;
     songIndex = 0;
+    
+    // Initial settings for attack and decays for all channels!
+    int j = 0;
+    for (j = 0; j < 6; j++) {
+        ch[j].dk_main_env.dk_state = onefix16;
+        ch[j].dk_main_env.attack_state = onefix16;
+        ch[j].dk_main_env.dk = float2fix16(0.96);
+        ch[j].dk_main_env.attack = float2fix16(0.1);
+        
+        ch[j].dk_damp_note_off.dk_state = onefix16;
+        ch[j].dk_damp_note_off.attack_state = onefix16;
+        ch[j].dk_damp_note_off.dk = float2fix16(0.3);
+        ch[j].dk_damp_note_off.attack = float2fix16(0);
+    }
+    
     timer3_init();
+    
+    //updateNote();
 
     while (true) {
         /* Maintain state machines of all polled MPLAB Harmony modules. */
@@ -145,7 +158,8 @@ int main ( void )
             // source: http://chipkit.net/forum/viewtopic.php?t=3137
             if (bufferAFull == 0) {
                 buffer_pp = &buffer_a[0];
-                channel1_generate();
+                
+               channel1_generate();
 #ifdef DEBUG
                 generate_sine();
 #endif
@@ -153,13 +167,14 @@ int main ( void )
             }
             if (bufferBFull == 0) {
                 buffer_pp = &buffer_b[0];
+                
                 channel1_generate();
 #ifdef DEBUG
                 generate_sine();
 #endif
                 bufferBFull = 1;
             }
-        if (isUpdateNote) {
+            if (isUpdateNote) {
                 updateNote();
                 isUpdateNote = 0;
             }
