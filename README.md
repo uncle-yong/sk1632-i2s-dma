@@ -3,7 +3,7 @@ Cytron SK1632 FM synth music player using UDA1334ATS, WM8731 and PCM5102 and a P
 
 In this project, PIC32MX150F128B and PIC32MX250F128B is used.
 
-> **Note: The new update (7/2/2018) only applies on the PCM5102 folder. The other codecs will be updated in the near future.
+> **Note: The new update (7/2/2018) only applies on the PCM5102 folder. The other codecs will be updated in the near future.**
 
 > **There is the WM8731 version of this project. In the project the WM8731 resides on a "Mikroelektronika Audio Codec Board Proto".
 > Please check this repository for the "WM8731" suffix for more information.**
